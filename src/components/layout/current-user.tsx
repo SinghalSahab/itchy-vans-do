@@ -4,8 +4,10 @@ import { useGetIdentity } from '@refinedev/core'
 import type {User} from '@/graphql/schema.types' 
 import { Text } from '../text'
 import { SettingOutlined } from '@ant-design/icons'
+import { useState } from 'react'
 
 const CurrentUser = () => {
+  const [isOpen,setIsOpen] = useState(false)
     const {data:user} = useGetIdentity<User>();
     const content = (
         <div style={{
@@ -16,15 +18,16 @@ const CurrentUser = () => {
               {user?.name}
             </Text>
             <div>
-                <Button style={{textAlign: "left"}} icon={<SettingOutlined />} type='text' block onClick={() => {}}>
-
+                <Button style={{textAlign: "left"}} icon={<SettingOutlined />} type='text' block onClick={() => setIsOpen(true)}>
+                    Account Settings
                 </Button>
             </div>
         </div>
     )
   return (
     <>
-    <Popover placement='bottomRight' trigger="click" overlayInnerStyle={{padding:0}} overlayStyle={{zIndex:999}}>
+    <Popover placement='bottomRight' trigger="click" overlayInnerStyle={{padding:0}} overlayStyle={{zIndex:999}} 
+    content={content}>
         <CustomAvatar name={user?.name || 'User'} src={user?.avatarUrl} size="default" style={{cursor:'pointer'}}/>
     </Popover>
     </>
