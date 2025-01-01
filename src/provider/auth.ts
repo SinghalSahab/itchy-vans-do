@@ -3,7 +3,7 @@ import type { AuthProvider } from "@refinedev/core";
 // import type { User } from "@/graphql/schema.types";
 
 import { API_URL, dataProvider } from "./data";
-
+import type {User} from '@/graphql/schema.types'
 /**
  * For demo purposes and to make it easier to test the app, you can use the following credentials:
  */
